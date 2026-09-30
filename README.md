@@ -1,3 +1,3 @@
-# Eaglercraft 17w46a
+# Eaglercraft 17w48a
 
-Welcome to Eaglercraft 17w46a. This version is the last version to have no waterlogging so this might be stable for you!
+This is no longer in the Technically Updated snapshot family, this is now in seperation zones of 1.13 and 1.14
