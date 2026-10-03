@@ -1,0 +1,29 @@
+name: Bundle Eaglercraft
+
+on:
+  push:
+    branches:
+      - main  # Triggers the build every time you push to the main branch
+  workflow_dispatch: # Allows you to manually trigger the workflow from the Actions tab
+
+jobs:
+  zip-bundle:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Pull the codebase into the runner
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # 2. Package only the specified Eaglercraft client assets
+      - name: Zip Eaglercraft Bundle
+        run: |
+          zip -r eaglercraft-bundle.zip classes.js classes.js.map assets.epk index.html
+
+      # 3. Save the resulting .zip file as a downloadable GitHub artifact
+      - name: Upload Bundle Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Eaglercraft-Bundle
+          path: eaglercraft-bundle.zip
+          retention-days: 5
