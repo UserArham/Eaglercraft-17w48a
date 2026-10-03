@@ -1,12 +1,11 @@
-- name: Cache npm dependencies
-  uses: actions/cache@v5.1.0
-  id: npm-cache
+- name: Enable Corepack
+  run: corepack enable
+
+- name: Setup Node.js environment
+  uses: actions/setup-node@v6.5.0
   with:
-    path: ~/.npm
-    key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-    restore-keys: |
-      ${{ runner.os }}-node-
+    node-version: '20' # Or your desired version
+    cache: 'yarn' # Automatically detects and hashes your yarn.lock file
 
 - name: Install dependencies
-  if: steps.npm-cache.outputs.cache-hit != 'true'
-  run: npm ci
+  run: yarn install --immutable # The standard flags for CI on Yarn Modern
